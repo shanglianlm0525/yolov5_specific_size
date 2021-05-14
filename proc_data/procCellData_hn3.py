@@ -105,6 +105,7 @@ def transVoc2Yolo():
             if bb[0] not in lbls:
                 continue
             cls = str(lbls[bb[0]])
+            bb[1], bb[2], bb[3], bb[4] = max(bb[1],0), max(bb[2],0), min(bb[3],gwidth-1), min(bb[4],gheight-1)
             lbl_num[int(cls)] = lbl_num[int(cls)] + 1
             x_center = str((bb[1] + bb[3]) * 0.5 / gwidth)
             y_center = str((bb[2] + bb[4]) * 0.5 / gheight)
@@ -117,7 +118,8 @@ def transVoc2Yolo():
 
     print(lbl_num)
 
-## [3752, 6900, 952, 252, 10194, 5226]
+## [2395, 3814, 513, 127, 7112, 4726]
+## [2395, 3821, 525, 127, 7113, 4726]
 moveValidData()
 produceImgAndLabelsList()
 transVoc2Yolo()
